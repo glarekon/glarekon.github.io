@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.glarekon.a51",
+      "sha256_cert_fingerprints": [
+        "A4:28:A3:2D:74:9E:5C:60:76:DA:79:3E:AA:8F:13:C6:61:85:CC:10:F7:7F:99:93:B7:87:87:83:89:55:D3:F7",
+        "0F:23:6E:07:5B:FC:F7:E7:2E:CF:2B:72:A2:AD:C6:79:45:14:89:3F:60:9D:5E:E0:FE:86:F1:F8:2E:CC:CF:8C"
+      ]
+    }
+  }
+]

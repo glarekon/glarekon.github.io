@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glarekon</title>
+  <meta name="robots" content="noindex">
+  <!-- GitHub Pages serves this page for any path it doesn't have, so it is
+       also where A51's room links (/r/K7XQ2M) land when the app isn't
+       installed: absolute paths only. -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">Glarekon</a>
+  </header>
+
+  <main>
+    <section id="room" hidden>
+      <h1>You're invited to an A51 room</h1>
+      <p class="lead">A friend wants you at their table.</p>
+      <div class="panel game">
+        <img src="/a51/icon.jpg" alt="A51 app icon">
+        <div>
+          <h2>A51</h2>
+          <p>Room code: <strong id="code"></strong></p>
+          <p><a id="open" href="#">Open in A51</a></p>
+          <p><a href="https://play.google.com/store/apps/details?id=com.glarekon.a51">Get A51 on Google Play</a></p>
+        </div>
+      </div>
+      <p>Already have A51? Open it, go to <strong>Play online</strong> and enter the code.</p>
+    </section>
+
+    <section id="missing">
+      <h1>Page not found</h1>
+      <p class="lead">There's nothing here.</p>
+      <p><a href="/">Back to Glarekon</a></p>
+    </section>
+  </main>
+
+  <footer>
+    Contact: <a href="mailto:glarekonstudio@gmail.com">glarekonstudio@gmail.com</a>
+  </footer>
+
+  <script>
+    // A room link: /r/ followed by a code of 6 letters and digits, without
+    // the lookalikes 0, O, 1 and I (server/src/match/roomCode.ts).
+    (function () {
+      var match = /^\/r\/([A-Za-z0-9]{6})\/?$/.exec(location.pathname);
+      if (!match) return;
+      var code = match[1].toUpperCase();
+      if (!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) return;
+      var play = 'https://play.google.com/store/apps/details?id=com.glarekon.a51';
+      document.title = 'A51 room ' + code;
+      document.getElementById('code').textContent = code;
+      // On Android, opens the app (or Google Play without it), for browsers
+      // inside other apps that don't hand the link to A51 by themselves.
+      document.getElementById('open').href =
+        'intent://glarekon.github.io/r/' + code +
+        '#Intent;scheme=https;package=com.glarekon.a51;S.browser_fallback_url=' +
+        encodeURIComponent(play) + ';end';
+      document.getElementById('missing').hidden = true;
+      document.getElementById('room').hidden = false;
+    })();
+  </script>
+</body>
+</html>
